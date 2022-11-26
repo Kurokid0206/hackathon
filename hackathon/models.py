@@ -128,7 +128,7 @@ class Product(models.Model):
     price = models.IntegerField()
     is_enabled = models.BooleanField(default=True)
     description = models.TextField()
-    user_product = models.ManyToManyField(UserProfile)
+    user_product = models.ManyToManyField(UserProfile, blank=True, null=True)
 
     def __str__(self):
         return self.name

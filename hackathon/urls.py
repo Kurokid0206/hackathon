@@ -17,7 +17,9 @@ from django.contrib import admin
 from django.urls import path
 from rest_framework.routers import SimpleRouter
 from hackathon.views.user import UserProfileViewSet
+from hackathon.views.product import ProductViewSet
 from hackathon.services.user import signup
+router = SimpleRouter(trailing_slash=False)
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -25,7 +27,6 @@ urlpatterns = [
 ]
 
 
-router = SimpleRouter(trailing_slash=False)
 router.register(r"api/user-profile", UserProfileViewSet, "user-profile")
-
+router.register(r"api/product", ProductViewSet, "product")
 urlpatterns += router.urls
