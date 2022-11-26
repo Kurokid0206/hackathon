@@ -1,9 +1,9 @@
 from django.contrib import admin
 from django.urls import path
-from .views import index
+from green_recycle.views.index import index
 
-app_name = 'green_recycle'
+app_name = "green_recycle"
 
 urlpatterns = [
-    path('', index.index, name='index'),
+    path("", index, name="index"),
 ]
