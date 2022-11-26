@@ -1,0 +1,91 @@
+{% extends "base.html" %} {% load static %}
+
+<!-- Title -->
+{% block title %} Home {% endblock %} {% block content %}
+<!--==============================Content=================================-->
+<div class="content">
+	<div class="ic">More Website Templates @ TemplateMonster.com - January 27, 2014!</div>
+	<div class="container_12">
+		<div class="grid_12">
+			<h2>Blogs</h2>
+		</div>
+		<div class="grid_4">
+			<div class="text1"><a href="#">Landscape Architecture / Design</a></div>
+			<br>Magna non nunc tristique rhoncus. Aliquam nibh antegestas id dictum a, commodo luctus libero. Praesent
+			faucibus malesuada faucibus. Donec laoreet metus id laoreetyl malesuada.
+			<br>
+			<a href="#" class="btn">more</a>
+		</div>
+		{% for blog in blogs %}
+		<div class="grid_4">
+			<div class="text1"><a href="#">{{ blog.title }}</a></div>
+			<br>{{ blog.content }}
+			<br>
+			<a href="#" class="btn">more</a>
+		{% endfor %}
+	</div>
+</div>
+<div class="bottom_block">
+	<div class="container_12">
+		<div class="grid_8">
+			<h2>Specialized Services</h2>
+			<div class="grid_4 alpha">
+				<div class="block2">
+					<div class="img_block ib1 fleft">
+						<img src="{% static 'images/page2_img1.jpg' %}" alt="" class="img_inner">
+						<span class="l"></span>
+						<span class="ll"></span>
+						<span class="r"></span>
+						<span class="rr"></span>
+						<span class="lb"></span>
+						<span class="llb"></span>
+						<span class="rb"></span>
+						<span class="rrb"></span>
+					</div>
+					<div class="extra_wrapper">
+						<div class="title">Garden Arches</div>
+						Trabitur vel lorem sit amet nullaertylllam
+						<ul class="list">
+							<li><a href="#">Quisque viverra </a></li>
+							<li><a href="#">Lulla nunc, eultri</a></li>
+							<li><a href="#">Kultricies eget</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="grid_4 omega">
+				<div class="block2">
+					<div class="img_block ib1 fleft">
+						<img src="images/page2_img2.jpg" alt="" class="img_inner">
+						<span class="l"></span>
+						<span class="ll"></span>
+						<span class="r"></span>
+						<span class="rr"></span>
+						<span class="lb"></span>
+						<span class="llb"></span>
+						<span class="rb"></span>
+						<span class="rrb"></span>
+					</div>
+					<div class="extra_wrapper">
+						<div class="title">Garden Ponds</div>
+						Yerbitur vel lorem sit amet nullaertymeril
+						<ul class="list">
+							<li><a href="#">Lisque viverra </a></li>
+							<li><a href="#">Olla nunc, eu ulri</a></li>
+							<li><a href="#">Viverra nulla nun</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="grid_4">
+			<h2>Testimonials</h2>
+			<blockquote class="bq1">
+				<p>Aliquam nibh antegestas tumcommodo luctus libero. Praesent bus malesuada faucibus. Donec laoreet
+					metus id ....</p>
+				<div class="bq_bot">Bredly Grosh</div>
+			</blockquote>
+		</div>
+	</div>
+</div>
+{% endblock %}
