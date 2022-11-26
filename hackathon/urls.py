@@ -26,6 +26,6 @@ urlpatterns = [
 
 
 router = SimpleRouter(trailing_slash=False)
-router.register(r"user", UserProfileViewSet, "user")
+router.register(r"api/user-profile", UserProfileViewSet, "user-profile")
 
 urlpatterns += router.urls

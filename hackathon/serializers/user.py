@@ -14,12 +14,6 @@ class UserProfileSerializer(ModelSerializer):
         model = UserProfile
         fields = "__all__"
 
-    @action(detail=False, methods=["post"])
-    def signup(self, validated_data):
-        user = User.objects.create_user(**validated_data)
-        user.save()
-        return user
-
 
 class UserSerializer(ModelSerializer):
     user_profile = UserProfileSerializer()
