@@ -18,12 +18,10 @@ from django.urls import path
 from rest_framework.routers import SimpleRouter
 from hackathon.views.user import UserProfileViewSet
 from hackathon.views.product import ProductViewSet
-from hackathon.services.user import signup
 router = SimpleRouter(trailing_slash=False)
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("api/signup/", signup, "signup"),
 ]
 
 
