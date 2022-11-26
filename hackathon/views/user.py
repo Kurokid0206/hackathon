@@ -28,7 +28,7 @@ class UserProfileViewSet(ModelViewSet):
             if password == re_password:
                 user = User.objects.create_user(username=username, password=password)
 
-                reference_id = request.POST.get("reference_id")
+                reference_id = request.data.get("reference_id")
                 ref_user = User.objects.filter(username=reference_id)
                 if ref_user.exists():
                     default_data = {
@@ -42,7 +42,7 @@ class UserProfileViewSet(ModelViewSet):
                     user_profile = UserProfile.objects.create(
                         user=user,
                         reference_id=reference_id,
-                        default_data=default_data,
+                        **default_data,
                     )
                 else:
                     return JsonResponse({"status": "fail", "message": "Invalid reference id"})
