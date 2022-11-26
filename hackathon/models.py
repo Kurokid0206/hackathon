@@ -93,7 +93,7 @@ class Blog(models.Model):
         super(Blog, self).save(*args, **kwargs)
 
     class Meta:
-        ordering = ["-create_date"]
+        ordering = ["-created_date"]
         managed = True
         db_table = "blog"
 
