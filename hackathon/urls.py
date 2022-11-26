@@ -15,16 +15,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from rest_framework.routers import SimpleRouter
+from hackathon.views.user import UserProfileViewSet
+from hackathon.services.user import signup
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path("admin/", admin.site.urls),
+    path("api/signup/", signup, "signup"),
 ]
 
-from rest_framework.routers import SimpleRouter
-
-from hackathon.views.user import UserProfileViewSet
 
 router = SimpleRouter(trailing_slash=False)
-router.register(r'user', UserProfileViewSet, 'user')
+router.register(r"user", UserProfileViewSet, "user")
 
 urlpatterns += router.urls
