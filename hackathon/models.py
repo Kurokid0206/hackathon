@@ -123,12 +123,14 @@ class Contact(models.Model):
 
 
 class Product(models.Model):
+    id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100)
     image = models.CharField(max_length=100)
     price = models.IntegerField()
     is_enabled = models.BooleanField(default=True)
     description = models.TextField()
-    user_product = models.ManyToManyField(UserProfile, blank=True)
+    create_date = models.DateField(auto_now_add=True, blank=True, null=True)
+    edit_date = models.DateTimeField(auto_now=True, blank=True, null=True)
 
     def __str__(self):
         return self.name
@@ -136,3 +138,51 @@ class Product(models.Model):
     class Meta:
         managed = True
         db_table = "product"
+
+
+class UserProduct(models.Model):
+    CHOICES = [
+		('Trade', 'Trade'),
+		('Sell', 'Sell'),
+		('Borrow', 'Borrow'),
+		('Wanted', 'Wanted'),
+	]
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=100)
+    cover_image = models.CharField(max_length=100)
+    video = models.CharField(max_length=255, null=True, blank=True)
+    status = models.CharField(choices=CHOICES, max_length=100, blank=True, null=True)
+    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE, null=True, blank=True)
+    create_date = models.DateField(auto_now_add=True, blank=True, null=True)
+    edit_date = models.DateTimeField(auto_now=True, blank=True, null=True)
+    default_point = models.IntegerField(null=True, blank=True)
+
+
+    class Meta:
+        managed = True
+        db_table = "UserProduct"
+
+class Asset(models.Model):
+    id = models.AutoField(primary_key=True)
+    user_product_asset = models.ForeignKey(UserProduct, on_delete=models.CASCADE, null=True, blank=True)
+    image = models.CharField(max_length=100)
+
+    class Meta:
+        managed = True
+        db_table = "Asset"
+
+class Category(models.Model):
+    id = models.AutoField(db_column="Category_ID", primary_key=True)
+    codename = models.CharField(db_column="Category_codename", max_length=250, unique=True)
+    name = models.CharField(db_column="Category_name", max_length=250, blank=True, null=True)
+    note = models.CharField(db_column="Note", max_length=250, blank=True, null=True)
+    create_date = models.DateField(db_column="Created_date", auto_now_add=True, blank=True, null=True)
+    is_enable = models.BooleanField(db_column="Enable", default=True, blank=True, null=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        managed = True
+        db_table = "Category"
+
