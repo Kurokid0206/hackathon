@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  postgres:
+    container_name: postgres
+    image: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - ../data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: postgres
+  hackathon:
+    container_name: hackathon
+    build: .
+    ports:
+      - "8000:8000"
+    entrypoint:
+      - "/venv/bin/gunicorn"
+      - "-b"
+      - "0.0.0.0:8000"
+      - "hackathon.wsgi"
+      - "--reload"
+    volumes:
+      - ./hackathon:/app/hackathon
+    depends_on:
+      - postgres
